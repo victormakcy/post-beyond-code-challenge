@@ -53,4 +53,14 @@ PBApp.controller('BookmarksController', ['$scope', '$http',
                 // or server returns response with an error status.
             });
         }
+
+        $scope.displayBookmarks = function (data) {
+            for (var i = 0; i < data.length; i++) {
+ 
+                // add each bookmark info to bookmarks array
+                $scope.bookmarks.push({
+                    // specific data to go here
+                });
+            }
+        }
     }])
