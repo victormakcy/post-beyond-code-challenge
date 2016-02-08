@@ -1,0 +1,8 @@
+.ui.card .image img {
+  height: 200px;
+}
+
+.article__excerpt {
+  height: 200px;
+  color: #000;
+}

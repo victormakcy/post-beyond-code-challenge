@@ -20,7 +20,7 @@ PBApp.controller('BookmarksController', ['$scope', '$http', function($scope, $ht
     for (var i = 0; i < data.length; i++) {
 
       // add each bookmark info to bookmarks array
-      $scope.bookmarks.push(data);
+      $scope.bookmarks.push(data[i]);
     }
   }
 }])
