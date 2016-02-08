@@ -2,7 +2,7 @@
     "name": "PostBeyondCodeChallenge",
     "version": "0.1.0",
     "dependencies": {
-   		  "angular": "~1.5.0-rc.2",
-          "semantic-ui": "~2.1.8"
+      "angular": "~1.5.0-rc.2",
+      "semantic-ui": "~2.1.8"
     }
 }

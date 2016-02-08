@@ -1,0 +1,26 @@
+{
+  "name": "post-beyond-code-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.x",
+    "request": "^2.69.x"
+  },
+  "devDependencies": {
+    "gulp-bower": "^0.0.13"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victormakcy/post-beyond-code-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victormakcy/post-beyond-code-challenge/issues"
+  },
+  "homepage": "https://github.com/victormakcy/post-beyond-code-challenge#readme"
+}

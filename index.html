@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="bower_components/semantic-ui/dist/semantic.min.css">
 </head>
 <body>
-    <div ng-controller="BookmarksController">
+    <div ng-controller="BookmarksController" ng-init="init()">
         <div class="bookmarks-wrapper">
             <ul class="bookmarks">
                 <li class="bookmark" ng-repeat="bookmark in bookmarks">
@@ -22,7 +22,7 @@
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/semantic-ui/dist/semantic.min.js"></script>
-    <script src="bower_components/oauth-signature/dist/oauth-signature.min.js"></script>
+    <script src="bower_components/oauth-signature-js/dist/oauth-signature.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
