@@ -1,8 +1,8 @@
 PBApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when("/", {
-      templateUrl: "app/components/bookmarks/bookmarksView",
-      controller: "bookmarksController"
+      templateUrl: "app/components/bookmarks/bookmarksView.html",
+      controller: "BookmarksController"
     });
 
     $locationProvider.html5Mode({

@@ -8,45 +8,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/app.css">
 </head>
 <body>
-  <!-- <div ng-view></div> -->
-
-  <div class="ui menu">
-    <div class="ui container">
-        <a href="#" class="header item">
-          Project Name
-        </a>
-    </div>
-  </div>
-
- <div class="ui container" ng-controller="BookmarksController" ng-init="init()">
-    <div class="bookmarks-wrapper">
-      <ul class="bookmarks ui stackable grid">
-        <li class="bookmark eight wide mobile eight wide tablet five wide computer column" ng-repeat="bookmark in bookmarks track by $index">
-          <a class="ui fluid card" href="http://www.dog.com">
-            <div class="content">
-              <div class="header">{{bookmark.article.title}}</div>
-            </div>
-            <div class="image" ng-if="bookmark.article.lead_image_url">
-              <img src={{bookmark.article.lead_image_url}}>
-            </div>
-            <div class="content article__excerpt" ng-if="!bookmark.article.lead_image_url">
-              <div>
-                {{bookmark.article.excerpt}}
-              </div>
-            </div>
-            <div class="extra content">
-              <div class="left floated author">
-                {{bookmark.article.domain}}
-              </div>
-            </div>
-          </a>
-        </li>
-      </ul>
-      <div class="bookmarks--no-result" ng-if="bookmarks.length == 0">
-          <strong>No results found...</strong>
-      </div>
-    </div>
-  </div>
+  <div ng-view></div>
 
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
   <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
