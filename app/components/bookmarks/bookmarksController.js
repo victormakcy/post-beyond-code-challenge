@@ -1,5 +1,3 @@
-var PBApp = angular.module('PBApp', []);
-
 PBApp.controller('BookmarksController', ['$scope', '$http', function($scope, $http) {
 
   $scope.init = function() {
