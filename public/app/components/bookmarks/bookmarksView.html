@@ -1,16 +1,16 @@
 <div class="ui menu">
-    <div class="ui container">
-        <a href="#" class="header item">
-          Project Name
-        </a>
-    </div>
+  <div class="ui container">
+      <a href="/" class="header item">
+        Post Beyond Code Challenge
+      </a>
   </div>
+</div>
 
 <div class="ui container" ng-controller="BookmarksController" ng-init="init()">
   <div class="bookmarks-wrapper">
     <ul class="bookmarks ui stackable grid">
       <li class="bookmark eight wide mobile eight wide tablet five wide computer column" ng-repeat="bookmark in bookmarks track by $index">
-        <a class="ui fluid card" href="http://www.dog.com">
+        <a class="ui fluid card" ng-href="/article/{{bookmark.article.id}}">
           <div class="content">
             <div class="header">{{bookmark.article.title}}</div>
           </div>
@@ -18,9 +18,7 @@
             <img src={{bookmark.article.lead_image_url}}>
           </div>
           <div class="content article__excerpt" ng-if="!bookmark.article.lead_image_url">
-            <div>
-              {{bookmark.article.excerpt}}
-            </div>
+            <div ng-bind-html="bookmark.article.excerpt"></div>
           </div>
           <div class="extra content">
             <div class="left floated author">

@@ -5,16 +5,22 @@ var qs = require('querystring');
 var path = require('path');
 var app = express();
 
-var accessTokens = {};
-
 app.use(express.static(__dirname + '/public'));
 
 app.get('/api/bookmarks', function (req, res) {
   requestAccessToken(function (err, tokens) {
-    accessTokens = tokens;
-
-    requestBookmarks(accessTokens, function (bookmarks) {
+    requestBookmarks(tokens, function (bookmarks) {
       res.send(bookmarks);
+    });
+  });
+});
+
+app.get('/api/article', function (req, res) {
+  var articleId = req.query.id;
+
+  requestAccessToken(function (err, tokens) {
+    requestArticle(articleId, tokens, function (article) {
+      res.send(article);
     });
   });
 });
@@ -46,7 +52,6 @@ requestAccessToken = function (cb) {
 }
 
 requestBookmarks = function (tokens, cb) {
-  console.log(tokens);
   var conf = config.get(),
       httpOptions = {
         oauth: {
@@ -58,6 +63,22 @@ requestBookmarks = function (tokens, cb) {
       };
 
   request.get('https://www.readability.com/api/rest/v1/bookmarks', httpOptions, function(err, response, body) {
+    return cb(JSON.parse(body));
+  });
+}
+
+requestArticle = function (articleId, tokens, cb) {
+  var conf = config.get(),
+      httpOptions = {
+        oauth: {
+          consumer_key: conf.consumer_key,
+          consumer_secret: conf.consumer_secret,
+          token: tokens.oauth_token,
+          token_secret: tokens.oauth_token_secret
+        }
+      };
+
+  request.get('https://www.readability.com/api/rest/v1/articles/' + articleId, httpOptions, function(err, response, body) {
     return cb(JSON.parse(body));
   });
 }
