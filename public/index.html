@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="PBApp">
+<head>
+    <meta charset="utf-8">
+    <title>Post Beyond Code Challenge</title>
+
+    <link rel="stylesheet" type="text/css" href="bower_components/semantic-ui/dist/semantic.min.css">
+</head>
+<body>
+   <!-- <div ng-view></div> -->
+
+   <div class="ui container" ng-controller="BookmarksController" ng-init="init()">
+        <div class="bookmarks-wrapper">
+            <ul class="bookmarks ui stackable grid">
+                <li class="bookmark eight wide mobile eight wide tablet five wide computer column" ng-repeat="bookmark in bookmarks track by $index">
+                   <a class="ui fluid card" href="http://www.dog.com">
+                      <div class="content">
+                        <div class="header">Cute Dog</div>
+                        <div class="meta">
+                          <span class="category">Animals</span>
+                        </div>
+                        <div class="description">
+                          <p></p>
+                        </div>
+                      </div>
+                      <div class="extra content">
+                        <div class="right floated author">
+                          <img class="ui avatar image" src="/images/avatar/small/matt.jpg"> Matt
+                        </div>
+                      </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="bookmarks--no-result" ng-if="bookmarks.length == 0">
+                <strong>No results found...</strong>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="bower_components/oauth-signature-js/dist/oauth-signature.min.js"></script>
+    <script type="text/javascript" src="app/app.module.js"></script>
+    <script type="text/javascript" src="app/app.routes.js"></script>
+    <script type="text/javascript" src="app/components/article/articleController.js"></script>
+    <script type="text/javascript" src="app/components/bookmarks/bookmarksController.js"></script>
+</body>
+</html>

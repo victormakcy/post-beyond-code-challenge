@@ -1,0 +1,12 @@
+<div>hi</div>
+<div ng-controller="BookmarksController" ng-init="init()">
+    <div class="bookmarks-wrapper">
+        <ul class="bookmarks">
+            <li class="bookmark" ng-repeat="bookmark in bookmarks">
+            </li>
+        </ul>
+        <div class="bookmarks--no-result" ng-if="bookmarks.length == 0">
+            <strong>No results found...</strong>
+        </div>
+    </div>
+</div>
