@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/client'));
 
 app.get('/api/bookmarks', function (req, res) {
   requestAccessToken(function (err, tokens) {
@@ -39,7 +39,7 @@ app.get('/api/article', function (req, res) {
 });
 
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
+  res.sendFile(path.join(__dirname, '/client/index.html'));
 })
 
 requestAccessToken = function (cb) {
