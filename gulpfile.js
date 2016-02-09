@@ -20,17 +20,17 @@ gulp.task('uglify', function () {
 });
 
 gulp.task('minify-css', function() {
-  return gulp.src('client/assets/css/*.css')
-    .pipe(concat('application.min.css')) //the name of the resulting file
-    .pipe(minifyCss())
-    .pipe(gulp.dest('client/public/css'));
+    return gulp.src('client/assets/css/*.css')
+        .pipe(concat('application.min.css'))
+        .pipe(minifyCss())
+        .pipe(gulp.dest('client/public/css'));
 });
 
 gulp.task('dist', ['uglify', 'minify-css']);
 
 gulp.task('watch', function () {
     var watchFiles = [
-        'client/**/*.js'
+        'client/**/*'
     ]
 
     return gulp.watch(watchFiles, ['dist']);

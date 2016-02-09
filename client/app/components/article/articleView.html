@@ -1,20 +1,20 @@
 <div class="ui menu">
-  <div class="ui container">
-      <a href="/" class="header item">
-        Post Beyond Code Challenge
-      </a>
-  </div>
+    <div class="ui container">
+        <a href="/" class="header item">
+            Post Beyond Code Challenge
+        </a>
+    </div>
 </div>
 
 <div class="ui container" ng-controller="ArticleController" ng-init="init()">
-  <div class="article-wrapper">
-    <div class="article__info">
-      <div class="article__title">{{article.title}}</div>
+    <div class="article-wrapper">
+        <div class="article__info">
+            <div class="article__title">{{article.title}}</div>
 
-      <div class="article__author">{{article.author}}</div>
-      <div class="article__date">{{article.date_published | date:'medium'}}</div>
+            <div class="article__author">{{article.author}}</div>
+            <div class="article__date">{{article.date_published | date:'medium'}}</div>
+        </div>
+
+        <div class="article__content" ng-bind-html="articleContent"></div>
     </div>
-
-    <div class="article__content" ng-bind-html="articleContent"></div>
-  </div>
 </div>
