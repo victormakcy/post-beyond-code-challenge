@@ -12,14 +12,14 @@ gulp.task('bower', function() {
     return bower().pipe(gulp.dest(config.lib));
 });
 
-gulp.task('uglify', ['bower'], function () {
-    return gulp.src('client/app/**/*.js') //select all javascript files under js/ and any subdirectory
-        .pipe(concat('application.min.js')) //the name of the resulting file
+gulp.task('uglify', function () {
+    return gulp.src('client/app/**/*.js')
+        .pipe(concat('application.min.js'))
         .pipe(uglify({mangle: false}))
-        .pipe(gulp.dest('client/public/js')); //the destination folder
+        .pipe(gulp.dest('client/public/js'));
 });
 
-gulp.task('minify-css', ['bower'], function() {
+gulp.task('minify-css', function() {
     return gulp.src('client/assets/css/*.css')
         .pipe(concat('application.min.css'))
         .pipe(cssnano())
@@ -28,7 +28,7 @@ gulp.task('minify-css', ['bower'], function() {
 
 gulp.task('dist', ['uglify', 'minify-css']);
 
-gulp.task('watch', ['bower', 'dist'], function () {
+gulp.task('watch', ['bower'], function () {
     var watchFiles = [
         'client/**/*'
     ]
@@ -36,4 +36,4 @@ gulp.task('watch', ['bower', 'dist'], function () {
     return gulp.watch(watchFiles, ['dist']);
 });
 
-gulp.task('default', ['bower', 'dist', 'watch']);
+gulp.task('default', ['bower', 'watch']);
