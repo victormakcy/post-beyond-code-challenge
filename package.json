@@ -5,7 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.x",
-    "request": "^2.69.x"
+    "request": "^2.69.x",
+    "body-parser": "^1.14.2"
   },
   "devDependencies": {
     "gulp-bower": "^0.0.13"

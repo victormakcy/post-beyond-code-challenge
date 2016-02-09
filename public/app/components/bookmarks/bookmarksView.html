@@ -1,13 +1,26 @@
-<div class="ui menu">
-  <div class="ui container">
-      <a href="/" class="header item">
-        Post Beyond Code Challenge
-      </a>
+<div ng-controller="BookmarksController" ng-init="init()">
+  <div class="ui menu">
+    <div class="ui container">
+        <a href="/" class="header item left">
+          Post Beyond Code Challenge
+        </a>
+        <div class="ui icon dropdown simple item right">
+          <i class="plus icon"></i>
+          <div class="menu">
+            <div class="header">
+              Save an item
+            </div>
+            <div class="ui input">
+              <input class="bookmark__input" type="text" name="url" placeholder="http://..." ng-model="bookmark.url">
+              <button class="ui primary button" ng-click="addBookmark()">Save</button>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
-</div>
 
-<div class="ui container" ng-controller="BookmarksController" ng-init="init()">
-  <div class="bookmarks-wrapper">
+  <div class="ui container">
+    <div class="bookmarks__header">My Articles</div>
     <ul class="bookmarks ui stackable grid">
       <li class="bookmark eight wide mobile eight wide tablet five wide computer column" ng-repeat="bookmark in bookmarks track by $index">
         <a class="ui fluid card" ng-href="/article/{{bookmark.article.id}}">

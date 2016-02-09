@@ -4,6 +4,9 @@ var config = require('./config');
 var qs = require('querystring');
 var path = require('path');
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static(__dirname + '/public'));
 
@@ -12,6 +15,16 @@ app.get('/api/bookmarks', function (req, res) {
     requestBookmarks(tokens, function (bookmarks) {
       res.send(bookmarks);
     });
+  });
+});
+
+app.post('/api/bookmarks', function (req, res) {
+  var url = req.body.url;
+
+  requestAccessToken(function (err, tokens) {
+    requestAddBookmark(url, tokens, function (newBookmark) {
+      res.send(newBookmark);
+    })
   });
 });
 
@@ -63,6 +76,43 @@ requestBookmarks = function (tokens, cb) {
       };
 
   request.get('https://www.readability.com/api/rest/v1/bookmarks', httpOptions, function(err, response, body) {
+    return cb(JSON.parse(body));
+  });
+}
+
+requestAddBookmark = function (url, tokens, cb) {
+  var conf = config.get(),
+      httpOptions = {
+        oauth: {
+          consumer_key: conf.consumer_key,
+          consumer_secret: conf.consumer_secret,
+          token: tokens.oauth_token,
+          token_secret: tokens.oauth_token_secret
+        },
+        form: {
+          url: url
+        }
+      };
+
+  request.post('https://www.readability.com/api/rest/v1/bookmarks', httpOptions, function(err, response, body) {
+    var id = response.headers.location.match(/bookmarks\/(\d*)$/)[1];
+
+    requestBookmark(id, tokens, cb);
+  });
+}
+
+requestBookmark = function (id, tokens, cb) {
+  var conf = config.get(),
+      httpOptions = {
+        oauth: {
+          consumer_key: conf.consumer_key,
+          consumer_secret: conf.consumer_secret,
+          token: tokens.oauth_token,
+          token_secret: tokens.oauth_token_secret
+        }
+      };
+
+  request.get('https://www.readability.com/api/rest/v1/bookmarks/' + id, httpOptions, function(err, response, body) {
     return cb(JSON.parse(body));
   });
 }

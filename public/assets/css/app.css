@@ -1,4 +1,20 @@
 /* bookmarksView styles */
+.ui.input .bookmark__input {
+  width: 250px;
+  margin-right: 10px;
+}
+
+.bookmarks__header {
+  font-size: 50px;
+  margin: 50px 0;
+}
+
+.ui.card .header {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .ui.card .image img {
   height: 200px;
 }
@@ -17,6 +33,7 @@
   font-size: 45px;
   font-weight: bold;
   margin-bottom: 35px;
+  line-height: 55px;
 }
 
 .article__content {

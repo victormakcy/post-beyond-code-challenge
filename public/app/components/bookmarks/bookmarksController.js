@@ -23,4 +23,23 @@ PBApp.controller('BookmarksController', ['$scope', '$http', '$sce', function($sc
       $scope.bookmarks.push(data[i]);
     }
   }
+
+  $scope.addBookmark = function () {
+    var url = $scope.bookmark.url;
+
+    $http({
+        method: 'POST',
+        url: '/api/bookmarks',
+        data: {url: url}
+    }).then(function (response) {
+        $scope.updateBookmarks(response.data);
+        $scope.bookmark.url = '';
+    });
+  }
+
+  $scope.updateBookmarks = function (data) {
+    data.article.excerpt = $sce.trustAsHtml(data.article.excerpt);
+
+    $scope.bookmarks.unshift(data);
+  }
 }])
