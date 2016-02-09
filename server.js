@@ -8,8 +8,14 @@ var bodyParser = require('body-parser'); //Used to parse the body of POST reques
 app.use(bodyParser.json()); // Support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Support encoded bodies
 
+/**
+ * Express Configurations
+ */
 app.use(express.static(__dirname + '/client'));
 
+/**
+ * Get all bookmarks request definition
+ */
 app.get('/api/bookmarks', function (req, res) {
     requestAccessToken(function (err, tokens) {
         requestBookmarks(tokens, function (bookmarks) {
@@ -18,6 +24,9 @@ app.get('/api/bookmarks', function (req, res) {
     });
 });
 
+/**
+ * Add a bookmark request definition
+ */
 app.post('/api/bookmarks', function (req, res) {
     var url = req.body.url;
 
@@ -28,6 +37,9 @@ app.post('/api/bookmarks', function (req, res) {
     });
 });
 
+/**
+ * Get an article request definition
+ */
 app.get('/api/article', function (req, res) {
     var articleId = req.query.id;
 
@@ -42,6 +54,11 @@ app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, '/client/index.html'));
 })
 
+
+/**
+ * Authenticate a user with Readability's XAuth endpoint
+ * @param {Function} cb
+ */
 requestAccessToken = function (cb) {
     var conf = config.get(),
         httpOptions = {
@@ -64,6 +81,11 @@ requestAccessToken = function (cb) {
     });
 }
 
+/**
+ * Get all bookmarks
+ * @param {Object} tokens
+ * @param {Function} cb
+ */
 requestBookmarks = function (tokens, cb) {
     var conf = config.get(),
         httpOptions = {
@@ -80,6 +102,12 @@ requestBookmarks = function (tokens, cb) {
     });
 }
 
+/**
+ * Add a bookmark
+ * @param {String} url
+ * @param {Object} tokens
+ * @param {Function} cb
+ */
 requestAddBookmark = function (url, tokens, cb) {
     var conf = config.get(),
         httpOptions = {
@@ -101,6 +129,12 @@ requestAddBookmark = function (url, tokens, cb) {
     });
 }
 
+/**
+ * Get a bookmark
+ * @param {String} id
+ * @param {Object} tokens
+ * @param {Function} cb
+ */
 requestBookmark = function (id, tokens, cb) {
     var conf = config.get(),
         httpOptions = {
@@ -117,6 +151,12 @@ requestBookmark = function (id, tokens, cb) {
     });
 }
 
+/**
+ * Get an article
+ * @param {String} articleId
+ * @param {Object} tokens
+ * @param {Function} cb
+ */
 requestArticle = function (articleId, tokens, cb) {
     var conf = config.get(),
         httpOptions = {
@@ -133,6 +173,7 @@ requestArticle = function (articleId, tokens, cb) {
     });
 }
 
+// Start listening
 app.listen(3000, function () {
     console.log('Post Beyond Code Challenge');
 });

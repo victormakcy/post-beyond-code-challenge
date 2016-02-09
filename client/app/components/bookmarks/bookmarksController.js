@@ -3,6 +3,9 @@ PBApp.controller('BookmarksController', ['$scope', '$http', '$sce', function($sc
         $scope.getBookmarks();
     }
 
+    /**
+     * Get all bookmarks associated with the user
+     */
     $scope.getBookmarks = function() {
         $scope.bookmarks = [];
 
@@ -14,16 +17,20 @@ PBApp.controller('BookmarksController', ['$scope', '$http', '$sce', function($sc
         });
     }
 
+    /**
+     * Populate $scope.bookmarks array with all the bookmarks
+     */
     $scope.displayBookmarks = function (data) {
         for (var i = 0; i < data.length; i++) {
-
+            // Enable sce for the article excerpt and allow html binding
             data[i].article.excerpt = $sce.trustAsHtml(data[i].article.excerpt);
-
-            // add each bookmark info to bookmarks array
             $scope.bookmarks.push(data[i]);
         }
     }
 
+    /**
+     * Get a url to bookmarks
+     */
     $scope.addBookmark = function () {
         var url = $scope.bookmark.url;
 
@@ -37,9 +44,12 @@ PBApp.controller('BookmarksController', ['$scope', '$http', '$sce', function($sc
         });
     }
 
+    /**
+     * Populate $scope.bookmarks array with the new bookmark
+     */
     $scope.updateBookmarks = function (data) {
+        // Enable sce for the article excerpt and allow html binding
         data.article.excerpt = $sce.trustAsHtml(data.article.excerpt);
-
         $scope.bookmarks.unshift(data);
     }
 }]);
