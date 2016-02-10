@@ -21,7 +21,12 @@
 
     <div class="ui container">
         <div class="bookmarks__header">My Articles</div>
-        <ul class="bookmarks ui stackable grid">
+
+        <div class="bookmarks--is-loading" ng-show="isLoading">
+            <div>Loading articles...</div>
+        </div>
+
+        <ul class="bookmarks ui stackable grid" ng-hide="showEmptyState()">
             <li class="bookmark eight wide mobile eight wide tablet five wide computer column" ng-repeat="bookmark in bookmarks track by $index">
                 <a class="ui fluid card" ng-href="/article/{{bookmark.article.id}}">
                     <div class="content">
@@ -41,7 +46,8 @@
                 </a>
             </li>
         </ul>
-        <div class="bookmarks--no-result" ng-if="bookmarks.length == 0">
+
+        <div class="bookmarks--no-result" ng-show="showEmptyState()">
             <div>There are currently no articles saved.</div>
             <div>Hover over the plus button to add one now!</div>
         </div>

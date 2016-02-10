@@ -9,7 +9,8 @@
     margin-right: 10px;
 }
 
-.bookmarks--no-result {
+.bookmarks--no-result,
+.bookmarks--is-loading {
     font-size: 50px;
     text-align: center;
     margin-top: 200px;

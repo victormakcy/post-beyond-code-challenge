@@ -1,18 +1,27 @@
 PBApp.controller('BookmarksController', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
     $scope.init = function() {
+        $scope.isLoading = true;
+        $scope.bookmarks = [];
         $scope.getBookmarks();
+    }
+
+    /**
+     * Should we show the bookmarks empty state view
+     */
+    $scope.showEmptyState = function () {
+        debugger;
+        return !$scope.isLoading && $scope.bookmarks.length == 0 ? true : false;
     }
 
     /**
      * Get all bookmarks associated with the user
      */
     $scope.getBookmarks = function() {
-        $scope.bookmarks = [];
-
         $http({
             method: 'GET',
             url: '/api/bookmarks',
         }).then(function (response) {
+            $scope.isLoading = false;
             $scope.displayBookmarks(response.data.bookmarks);
         });
     }
