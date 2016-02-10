@@ -6,7 +6,7 @@ describe('post beyond code challenge', function() {
     expect(element(by.className('js-add-bookmarks-button')).isPresent()).toBe(true);
   });
 
-  it('bookmarks home page should have a nav-bar with an add bookmark button', function() {
+  it('clicking an article card should open a new page with the title of the same article', function() {
     browser.get('http://localhost:3000');
 
     var bookmarks = element.all(by.repeater('bookmark in bookmarks'));
